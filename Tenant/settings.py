@@ -39,9 +39,10 @@ SHARED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hotel',
     'rest_framework',
     'drf_yasg',
+    'villa',
+    'hotel',
 ]
 
 
@@ -52,7 +53,6 @@ TENANT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'villa',
 ]
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
@@ -60,7 +60,6 @@ INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in S
 TENANT_MODEL = "client.Client"  # app.Model
 
 TENANT_DOMAIN_MODEL = "client.Domain"  # app.Model
-
 
 
 MIDDLEWARE = [
@@ -75,7 +74,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Tenant.urls'
-PUBLIC_SCHEMA_URLCONF = 'Tenant.urls_public'
+# PUBLIC_SCHEMA_URLCONF = 'Tenant.urls_public'
 
 TEMPLATES = [
     {
@@ -102,13 +101,14 @@ WSGI_APPLICATION = 'Tenant.wsgi.application'
 DATABASES = {
     "default": {
         'ENGINE': 'django_tenants.postgresql_backend',
-        "NAME": 'demo',
-        "USER": 'demo',
+        "NAME": 'tenantrec',
+        "USER": 'tenantrec',
         "PASSWORD": 'eagle',
         "HOST": 'localhost',
         "PORT": '5432',
     }
 }
+
 
 DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
@@ -158,3 +158,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
+
