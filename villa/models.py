@@ -7,7 +7,6 @@ from client.models import Client
 
 class VillaBooking(models.Model):
     customer = models.ForeignKey(Client, on_delete=models.CASCADE)
-
     name = models.CharField(max_length=25)
     booking_date = models.DateField()
     leave_date = models.DateField()
